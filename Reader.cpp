@@ -22,7 +22,7 @@ if (file.is_open()){
 	while (file >> vertex >> neighbor)
 	{
 
-		this->graph->addEdge(vertex, neighbor);
+		this->graph->addEdge(vertex-1, neighbor-1);
 
 	}
 

@@ -1,7 +1,3 @@
-#include <iostream>
-
-using namespace std;
-
 #ifndef GRAPH_H
 #define GRAPH_H
 

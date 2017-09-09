@@ -12,7 +12,6 @@ class Reader{
 		Reader(const char * path, Graph * graph);
 		void read();
 
-
 	private:
 		const char * path;
 		Graph * graph;
