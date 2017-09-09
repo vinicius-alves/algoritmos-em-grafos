@@ -2,35 +2,37 @@
 
 using namespace std;
 
-Reader::Reader(const char * path):path(path){};
+Reader::Reader(const char * path, Graph * graph):path(path),graph(graph){};
 
-
-vector<vector<bit > > Reader::getMatrix(){
+void Reader::read(){
 
 ifstream file;
 file.open(this->path);
 
 if (file.is_open()){
 
-	string line;
+	unsigned short totalVertexes;
 
-    getline(file,line); 
-    
+	file >> totalVertexes;
 
-    int lines = atoi(line.c_str());
+    this->graph->setTotalVertexes(totalVertexes);
 
-    cout<<lines<<endl;
-    cout<<"\'=\'"<<endl;
+
+	unsigned short vertex, neighbor;
+	while (file >> vertex >> neighbor)
+	{
+
+		this->graph->addEdge(vertex, neighbor);
+
+	}
 
 	file.close();
-
-	vector<vector<bit > > matrix(lines, vector<bit >(lines));
-
-	return matrix;
 
 } else{
 	throw invalid_argument( "File not found!" );
 }
+
+
 
 
 };
