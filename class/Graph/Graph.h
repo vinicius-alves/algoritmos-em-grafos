@@ -3,6 +3,7 @@
 #include <vector>
 #include <fstream>
 #include "../IO/Writter.h"
+#include "../lengthData.cpp"
 
 using namespace std;
 
@@ -12,20 +13,20 @@ using namespace std;
 class Graph {
 
 	public:
-		virtual void addEdge(unsigned short const &vertex, unsigned short const &neighbor);
+		virtual void addEdge(vertexLabelType const &vertex, vertexLabelType const &neighbor);
 		virtual void print();
 		virtual void printVerbose() = 0;
 		void calcRelativeFrequencyValences();
-		void setTotalVertexes(unsigned short total);
-		void setTotalEdges(unsigned short total);
-		unsigned short getTotalVertexes();
+		void setTotalVertexes(vertexesTotalLabelType total);
+		void setTotalEdges(edgesTotalLabelType total);
+		edgesTotalLabelType getTotalVertexes();
 
 	protected:
 		virtual void initializeStructure();
-		unsigned short totalVertexes;
-		unsigned short totalEdges;
-		vector<unsigned short> *valences;
-		vector<unsigned short> *frequencyOfValences;
+		vertexesTotalLabelType totalVertexes;
+		edgesTotalLabelType totalEdges;
+		vector< vertexesTotalLabelType > *valences;
+		vector< edgesTotalLabelType > *frequencyOfValences;
 };
 
 #endif

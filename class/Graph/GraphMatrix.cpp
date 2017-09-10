@@ -8,7 +8,7 @@ void GraphMatrix::initializeStructure(){
 	this->matrix = new vector< vector<bool> >(this->totalVertexes,vector<bool>(this->totalVertexes,0));
 }
 
-void GraphMatrix::addEdge(unsigned short const &vertex, unsigned short const &neighbor){
+void GraphMatrix::addEdge(vertexLabelType const &vertex, vertexLabelType const &neighbor){
 
 	Graph::addEdge(vertex,neighbor);
 
@@ -33,7 +33,7 @@ void GraphMatrix::printVerbose(){
 	cout<<endl;    	
 }
 
-vector<bool>* GraphMatrix::getNeighbors(unsigned short const &node){
+vector<bool>* GraphMatrix::getNeighbors(vertexLabelType const &node){
 
 	return &(*this->matrix)[node];
 }

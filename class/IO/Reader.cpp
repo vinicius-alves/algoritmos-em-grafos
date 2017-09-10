@@ -11,15 +11,15 @@ file.open(this->path);
 
 if (file.is_open()){
 
-	unsigned short totalVertexes;
-	unsigned short totalEdges =0;
+	vertexesTotalLabelType totalVertexes;
+	edgesTotalLabelType totalEdges =0;
 
 	file >> totalVertexes;
 
     this->graph->setTotalVertexes(totalVertexes);
 
 
-	unsigned short vertex, neighbor;
+	vertexLabelType vertex, neighbor;
 	while (file >> vertex >> neighbor)
 	{
 

@@ -11,9 +11,9 @@ class GraphMatrix: public Graph {
 
 	public:
 		~GraphMatrix();
-		virtual void addEdge(unsigned short const &vertex, unsigned short const &neighbor);
+		virtual void addEdge(vertexLabelType const &vertex, vertexLabelType const &neighbor);
 		virtual void printVerbose();
-		vector<bool>* getNeighbors(unsigned short const &node);
+		vector<bool>* getNeighbors(vertexLabelType const &node);
 
 	private:
 		virtual void initializeStructure();

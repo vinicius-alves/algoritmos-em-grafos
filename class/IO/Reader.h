@@ -1,5 +1,6 @@
 #include <fstream>
 #include "../Graph/Graph.h"
+#include "../lengthData.cpp"
 
 using namespace std;
 

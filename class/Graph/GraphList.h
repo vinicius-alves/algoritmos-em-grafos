@@ -12,13 +12,13 @@ class GraphList: public Graph {
 
 	public:
 		~GraphList();
-		virtual void addEdge(unsigned short const &vertex, unsigned short const &neighbor);
+		virtual void addEdge(vertexLabelType const &vertex, vertexLabelType const &neighbor);
 		virtual void printVerbose();
 
 	private:
 		virtual void initializeStructure();
-		vector<unsigned short> *vertexes;
-		vector< forward_list<unsigned short> > *vertexesLinkedLists;
+		vector< vertexLabelType > *vertexes;
+		vector< forward_list< vertexesTotalLabelType > > *vertexesLinkedLists;
 };
 
 #endif

@@ -3,6 +3,7 @@
 #include <deque>
 #include <queue>
 #include "../Graph/Graph.h"
+#include "../lengthData.cpp"
 
 using namespace std;
 
@@ -13,7 +14,7 @@ class Search{
 
 	public:
 		Search(Graph * graph);
-		virtual void breadthFirstSearch(unsigned short const &node) = 0;
+		virtual void breadthFirstSearch(edgesTotalLabelType const &node) = 0;
 
 	protected:
 		Graph * graph;

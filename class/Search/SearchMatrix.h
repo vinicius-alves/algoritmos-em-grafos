@@ -11,7 +11,7 @@ class SearchMatrix : public Search{
 
 	public:
 		SearchMatrix(Graph * graph);
-		virtual void breadthFirstSearch(unsigned short const &node);
+		virtual void breadthFirstSearch(vertexLabelType const &node);
 
 };
 
