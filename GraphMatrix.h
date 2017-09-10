@@ -12,7 +12,7 @@ class GraphMatrix: public Graph {
 	public:
 		~GraphMatrix();
 		virtual void addEdge(unsigned short const &vertex, unsigned short const &neighbor);
-		virtual void print();
+		virtual void printVerbose();
 
 	private:
 		virtual void initializeStructure();

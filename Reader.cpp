@@ -12,6 +12,7 @@ file.open(this->path);
 if (file.is_open()){
 
 	unsigned short totalVertexes;
+	unsigned short totalEdges =0;
 
 	file >> totalVertexes;
 
@@ -23,8 +24,10 @@ if (file.is_open()){
 	{
 
 		this->graph->addEdge(vertex-1, neighbor-1);
-
+		totalEdges++;
 	}
+
+	this->graph->setTotalEdges(totalEdges);
 
 	file.close();
 

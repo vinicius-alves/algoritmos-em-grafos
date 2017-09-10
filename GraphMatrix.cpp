@@ -4,17 +4,21 @@ using namespace std;
 
 void GraphMatrix::initializeStructure(){
 
+	Graph::initializeStructure();
 	this->matrix = new vector< vector<bool> >(this->totalVertexes,vector<bool>(this->totalVertexes));
 }
 
 void GraphMatrix::addEdge(unsigned short const &vertex, unsigned short const &neighbor){
+
+	Graph::addEdge(vertex,neighbor);
+
 	(*matrix)[vertex][neighbor] = true;
 	(*matrix)[neighbor][vertex] = true;
 }
 
-void GraphMatrix::print(){
+void GraphMatrix::printVerbose(){
 
-	cout<<"Graph in Matrix \n"<<"Total of vertexes: "<< this->totalVertexes<<endl;
+	Graph::print();
 
 	for (vector< vector<bool> >::iterator firstIt= (*this->matrix).begin(); firstIt!= (*this->matrix).end(); ++firstIt){
 
@@ -25,8 +29,9 @@ void GraphMatrix::print(){
 
 		cout<<endl;
 	}
-    	
-};
+
+	cout<<endl;    	
+}
 
 GraphMatrix::~GraphMatrix(){
 

@@ -4,6 +4,7 @@ using namespace std;
 
 void GraphList::initializeStructure(){
 
+	Graph::initializeStructure();
 	this->vertexes = new vector<unsigned short>(this->totalVertexes);
 	this->vertexesLinkedLists = new vector< forward_list<unsigned short> >(this->totalVertexes, forward_list<unsigned short>());
 
@@ -16,11 +17,17 @@ void GraphList::initializeStructure(){
 }
 
 void GraphList::addEdge(unsigned short const &vertex, unsigned short const &neighbor){
+
+	Graph::addEdge(vertex,neighbor);
+
 	(*this->vertexesLinkedLists)[vertex].emplace_front(neighbor);
 	(*this->vertexesLinkedLists)[neighbor].emplace_front(vertex);
 }
 
-void GraphList::print(){
+
+void GraphList::printVerbose(){
+
+	Graph::print();
 
 	register unsigned short totalVertexes = this->totalVertexes;
 
@@ -28,7 +35,8 @@ void GraphList::print(){
 
 		cout << (*this->vertexes)[i] << " : ";
 
-		for (forward_list<unsigned short>::iterator secondIt= ((*this->vertexesLinkedLists)[i]).begin(); secondIt!= ((*this->vertexesLinkedLists)[i]).end(); ++secondIt){
+		for (forward_list<unsigned short>::iterator secondIt= ((*this->vertexesLinkedLists)[i]).begin(); 
+			secondIt!= ((*this->vertexesLinkedLists)[i]).end(); ++secondIt){
 
 			if(secondIt == ((*this->vertexesLinkedLists)[i]).begin())
 				cout << *secondIt; 
@@ -38,7 +46,8 @@ void GraphList::print(){
 
 		cout<<endl;
 	}
-    	
+
+	cout<<endl;  	
 }
 
 GraphList::~GraphList(){
