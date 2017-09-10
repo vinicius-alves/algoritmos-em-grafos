@@ -1,8 +1,8 @@
 #include <iostream>
-#include "Reader.h"
-#include "GraphMatrix.h"
-#include "GraphList.h"
-#include "SearchMatrix.h"
+#include "class/IO/Reader.h"
+#include "class/Graph/GraphMatrix.h"
+#include "class/Graph/GraphList.h"
+#include "class/Search/SearchMatrix.h"
 
 int main(){
 
