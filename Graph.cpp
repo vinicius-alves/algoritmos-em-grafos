@@ -11,6 +11,11 @@ void Graph::setTotalEdges(unsigned short total){
 	this->totalEdges = total;
 }
 
+unsigned short Graph::getTotalVertexes(){
+
+	return this->totalVertexes;
+}
+
 void Graph::initializeStructure(){
 	this->valences = new vector< unsigned short >(this->totalVertexes,0);
 	this->frequencyOfValences = new vector< unsigned short >(this->totalVertexes-1,0);

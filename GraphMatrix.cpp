@@ -5,7 +5,7 @@ using namespace std;
 void GraphMatrix::initializeStructure(){
 
 	Graph::initializeStructure();
-	this->matrix = new vector< vector<bool> >(this->totalVertexes,vector<bool>(this->totalVertexes));
+	this->matrix = new vector< vector<bool> >(this->totalVertexes,vector<bool>(this->totalVertexes,0));
 }
 
 void GraphMatrix::addEdge(unsigned short const &vertex, unsigned short const &neighbor){
@@ -31,6 +31,11 @@ void GraphMatrix::printVerbose(){
 	}
 
 	cout<<endl;    	
+}
+
+vector<bool>* GraphMatrix::getNeighbors(unsigned short const &node){
+
+	return &(*this->matrix)[node];
 }
 
 GraphMatrix::~GraphMatrix(){

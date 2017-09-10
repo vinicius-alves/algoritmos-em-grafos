@@ -18,6 +18,7 @@ class Graph {
 		void calcRelativeFrequencyValences();
 		void setTotalVertexes(unsigned short total);
 		void setTotalEdges(unsigned short total);
+		unsigned short getTotalVertexes();
 
 	protected:
 		virtual void initializeStructure();

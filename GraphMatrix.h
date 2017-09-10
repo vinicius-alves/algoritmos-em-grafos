@@ -13,6 +13,7 @@ class GraphMatrix: public Graph {
 		~GraphMatrix();
 		virtual void addEdge(unsigned short const &vertex, unsigned short const &neighbor);
 		virtual void printVerbose();
+		vector<bool>* getNeighbors(unsigned short const &node);
 
 	private:
 		virtual void initializeStructure();
