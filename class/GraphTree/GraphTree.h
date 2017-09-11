@@ -1,7 +1,4 @@
-#include <vector>
 #include <iostream>
-#include <deque>
-#include <queue>
 #include "../Graph/Graph.h"
 #include "../lengthData.cpp"
 #include "../libs/tree.hh"
@@ -16,9 +13,10 @@ class GraphTree{
 	public:
 		GraphTree();
 		~GraphTree();
+		void insertRoot(vertexLabelType const &nodeRoot);
 		void insert(vertexLabelType const &nodeParent,vertexLabelType const &nodeChild);
-		vertexLabelType* getParent(vertexLabelType const &node);
-		vertexLabelType* getLevel(vertexLabelType const &node);
+		vertexLabelType getParent(vertexLabelType const &node);
+		int getLevel(vertexLabelType const &node);
 
 	private:
 		tree< vertexLabelType > *graphTree;

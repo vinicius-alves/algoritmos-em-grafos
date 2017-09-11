@@ -14,6 +14,7 @@ class GraphList: public Graph {
 		~GraphList();
 		virtual void addEdge(vertexLabelType const &vertex, vertexLabelType const &neighbor);
 		virtual void printVerbose();
+		forward_list< vertexesTotalLabelType >* getNeighbors(vertexLabelType const &node);
 
 	private:
 		virtual void initializeStructure();

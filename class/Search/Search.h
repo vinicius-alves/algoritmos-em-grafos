@@ -1,8 +1,9 @@
 #include <vector>
 #include <iostream>
-#include <deque>
 #include <queue>
+#include <stack>
 #include "../Graph/Graph.h"
+#include "../GraphTree/GraphTree.h"
 #include "../lengthData.cpp"
 
 using namespace std;
@@ -14,7 +15,8 @@ class Search{
 
 	public:
 		Search(Graph * graph);
-		virtual void breadthFirstSearch(edgesTotalLabelType const &node) = 0;
+		virtual GraphTree* breadthFirstSearch(vertexLabelType const &node) = 0;
+		virtual GraphTree* depthFirstSearch(vertexLabelType const &node) = 0;
 
 	protected:
 		Graph * graph;

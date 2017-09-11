@@ -50,6 +50,12 @@ void GraphList::printVerbose(){
 	cout<<endl;  	
 }
 
+forward_list< vertexesTotalLabelType >* GraphList::getNeighbors(vertexLabelType const &node){
+
+	return &(*this->vertexesLinkedLists)[node];
+
+}
+
 GraphList::~GraphList(){
 
 	for (vector< forward_list< vertexLabelType > >::iterator firstIt= (*this->vertexesLinkedLists).begin(); firstIt!= (*this->vertexesLinkedLists).end(); ++firstIt){

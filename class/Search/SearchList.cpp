@@ -1,10 +1,10 @@
-#include "SearchMatrix.h"
+#include "SearchList.h"
 
 using namespace std;
 
-SearchMatrix::SearchMatrix(Graph * graph):Search(graph){}
+SearchList::SearchList(Graph * graph):Search(graph){}
 
-GraphTree* SearchMatrix::breadthFirstSearch(vertexLabelType const &node){
+GraphTree* SearchList::breadthFirstSearch(vertexLabelType const &node){
 
 	if (node >= this->graph->getTotalVertexes()){
 		cout<<"Error : Node doesn't belong to graph"<<endl;
@@ -21,7 +21,7 @@ GraphTree* SearchMatrix::breadthFirstSearch(vertexLabelType const &node){
 
 	queue< vertexLabelType > *fifo = new queue< vertexLabelType >(); 
 
-	vector<bool>* neighbors;
+	forward_list< vertexesTotalLabelType >* neighbors;
 
 	fifo->push(node-1);
 
@@ -29,22 +29,21 @@ GraphTree* SearchMatrix::breadthFirstSearch(vertexLabelType const &node){
 
 	vertexLabelType father;
 
-
 	while (!fifo->empty())
   	{	
   		father = fifo->front();
 
   		fifo->pop();
 
-  		neighbors = ((GraphMatrix *)this->graph)->getNeighbors(father);
+  		neighbors = ((GraphList *)this->graph)->getNeighbors(father);
  
-  		for (vertexesTotalLabelType i =0; i< totalVertexes; i++){
+  		for ( auto it = neighbors->begin(); it != neighbors->end(); ++it ){
 
-			if((*neighbors)[i] && !markedVertexes[i]){
+			if(!markedVertexes[*it]){
 
-				markedVertexes[i] = true;
-				fifo->push(i);
-				graphTree->insert(father,i);			
+				markedVertexes[*it] = true;
+				fifo->push(*it);
+				graphTree->insert(father,*it);			
 			}
 		}
 
@@ -56,7 +55,7 @@ GraphTree* SearchMatrix::breadthFirstSearch(vertexLabelType const &node){
 
 }
 
-GraphTree* SearchMatrix::depthFirstSearch(vertexLabelType const &node){
+GraphTree* SearchList::depthFirstSearch(vertexLabelType const &node){
 
 	if (node >= this->graph->getTotalVertexes()){
 		cout<<"Error : Node doesn't belong to graph"<<endl;
@@ -73,7 +72,7 @@ GraphTree* SearchMatrix::depthFirstSearch(vertexLabelType const &node){
 
 	stack< vertexLabelType > *lifo = new stack< vertexLabelType >(); 
 
-	vector<bool>* neighbors;
+	forward_list< vertexesTotalLabelType >* neighbors;
 
 	bool lifoWasPushed = false;
 
@@ -99,19 +98,19 @@ GraphTree* SearchMatrix::depthFirstSearch(vertexLabelType const &node){
 
  			markedVertexes[father] = true;
 
- 			neighbors = ((GraphMatrix *)this->graph)->getNeighbors(father);
+ 			neighbors = ((GraphList *)this->graph)->getNeighbors(father);
 
-  			for (vertexesTotalLabelType i =0; i< totalVertexes; i++){
+  			for ( auto it = neighbors->begin(); it != neighbors->end(); ++it ){
 
-				if((*neighbors)[i]){ //&& ((*vertexFather)[father]!= i || father == node-1)){
+				//&& ((*vertexFather)[father]!= i || father == node-1)){
 
 					//lifoWasPushed = true;
 				    //cout<< "(*vertexFather)["<<father<<"] = " << (*vertexFather)[father] << endl;
 					//cout<<i <<" was pushed"<<endl;
 					//(*vertexFather)[i] = father;
-					lifo->push(i);
+					lifo->push(*it);
 					
-				}			
+						
 
 			}
 

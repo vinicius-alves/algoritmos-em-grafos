@@ -1,16 +1,17 @@
 #include <vector>
+#include <forward_list>
 #include "Search.h"
-#include "../Graph/GraphMatrix.h"
+#include "../Graph/GraphList.h"
 
 using namespace std;
 
-#ifndef SEARCHMATRIX_H
-#define SEARCHMATRIX_H
+#ifndef SEARCHLIST_H
+#define SEARCHLIST_H
 
-class SearchMatrix : public Search{
+class SearchList : public Search{
 
 	public:
-		SearchMatrix(Graph * graph);
+		SearchList(Graph * graph);
 		virtual GraphTree* breadthFirstSearch(vertexLabelType const &node);
 		virtual GraphTree* depthFirstSearch(vertexLabelType const &node);
 
