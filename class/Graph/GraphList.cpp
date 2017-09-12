@@ -33,15 +33,15 @@ void GraphList::printVerbose(){
 
 	for ( vertexesTotalLabelType i =0; i<totalVertexes; i++){
 
-		cout << (*this->vertexes)[i] << " : ";
+		cout << (*this->vertexes)[i]+1 << " : ";
 
 		for (forward_list< vertexLabelType >::iterator secondIt= ((*this->vertexesLinkedLists)[i]).begin(); 
 			secondIt!= ((*this->vertexesLinkedLists)[i]).end(); ++secondIt){
 
 			if(secondIt == ((*this->vertexesLinkedLists)[i]).begin())
-				cout << *secondIt; 
+				cout << *secondIt + 1; 
 			else
-				cout <<" -> "<< *secondIt;			
+				cout <<" -> "<< *secondIt + 1;			
 		}
 
 		cout<<endl;

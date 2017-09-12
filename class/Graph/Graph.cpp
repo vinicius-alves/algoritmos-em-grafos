@@ -68,6 +68,13 @@ void Graph::print(){
 	writter->closeFile();
 	delete writter;
 
+	cout<<"\nProcess Id = "<<::getpid()<<endl; 
+	cout<<"Program paused, press any key to continue."<<endl; 
+
+	char b;
+
+	cin >> b;
+
 	cout<< endl;
 
 }

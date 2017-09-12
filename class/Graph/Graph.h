@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <vector>
 #include <fstream>
+#include <unistd.h>
 #include "../IO/Writter.h"
 #include "../lengthData.cpp"
 
@@ -19,7 +20,7 @@ class Graph {
 		void calcRelativeFrequencyValences();
 		void setTotalVertexes(vertexesTotalLabelType total);
 		void setTotalEdges(edgesTotalLabelType total);
-		edgesTotalLabelType getTotalVertexes();
+		vertexesTotalLabelType getTotalVertexes();
 
 	protected:
 		virtual void initializeStructure();

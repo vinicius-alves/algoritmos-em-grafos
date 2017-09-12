@@ -13,11 +13,10 @@ int main(){
 	reader->read();
 	delete reader; 
 
-	//graph->print();
+	graph->print();
  
 	Search *search = new SearchList(graph);
 
-	//GraphTree graphTree = search->breadthFirstSearch(1);
 	GraphTree *graphTree = search->breadthFirstSearch(1);
 
 	cout<<"Level of 1 is "<< graphTree->getLevel(1)<<endl;

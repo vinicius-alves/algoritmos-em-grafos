@@ -1,3 +1,4 @@
+#include <stdexcept>
 #include "Reader.h"
 
 using namespace std;
