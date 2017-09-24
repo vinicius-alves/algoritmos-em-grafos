@@ -11,9 +11,9 @@ GraphTree* SearchList::breadthFirstSearch(vertexLabelType const &node){
 		exit(-1);
 	}
 
-	GraphTree* graphTree = new GraphTree();
-
 	register vertexesTotalLabelType totalVertexes = this->graph->getTotalVertexes();
+
+	GraphTree* graphTree = new GraphTree(totalVertexes);
 
 	static vector<bool> markedVertexes(totalVertexes,false);
 
@@ -43,7 +43,7 @@ GraphTree* SearchList::breadthFirstSearch(vertexLabelType const &node){
 
 				markedVertexes[*it] = true;
 				fifo->push(*it);
-				graphTree->insert(father,*it);			
+				graphTree->insertOrUpdate(father,*it);			
 			}
 		}
 
@@ -62,9 +62,9 @@ GraphTree* SearchList::depthFirstSearch(vertexLabelType const &node){
 		exit(-1);
 	}
 
-	GraphTree* graphTree = new GraphTree();
-
 	register vertexesTotalLabelType totalVertexes = this->graph->getTotalVertexes();
+
+	GraphTree* graphTree = new GraphTree(totalVertexes);
 
 	static vector<bool> markedVertexes(totalVertexes,false);
 
@@ -116,7 +116,7 @@ GraphTree* SearchList::depthFirstSearch(vertexLabelType const &node){
 
 			//if(lifoWasPushed){
 				//cout << "father = " << father << " son = " << lifo->top()<<endl;
-				//graphTree->insert((*vertexFather)[lifo->top()],lifo->top());
+				//graphTree->insertOrUpdate((*vertexFather)[lifo->top()],lifo->top());
 			//}
 
 			//lifoWasPushed = false;
@@ -133,8 +133,132 @@ GraphTree* SearchList::depthFirstSearch(vertexLabelType const &node){
 
 }
 
-GraphTree* SearchList::djikstra(vertexLabelType const &node){
+GraphTree* SearchList::dijkstra(vertexLabelType const &node){
+
+	if (node-1 >= this->graph->getTotalVertexes()){
+		cout<<"Error : Node doesn't belong to graph"<<endl;
+		exit(-1);
+	}
+
+	register vertexesTotalLabelType totalVertexes = this->graph->getTotalVertexes();
+
+	GraphTree* graphTree = new GraphTree(totalVertexes);
+
+	graphTree->insertRoot(node-1);
+
+	vector<unsigned int> distance(totalVertexes,numeric_limits< vertexesTotalLabelType >::max());
+
+	priority_queue< iPair, vector <iPair> , greater<iPair> > minHeap;
+
+   	minHeap.push(make_pair(0, node-1));
+
+   	forward_list< vertexesTotalLabelType >* neighbors;
+   	forward_list< float >* neighborsWeight;
+
+    distance[node-1] = 0;
+
+    while (!minHeap.empty()){
+
+        unsigned int uLabel = minHeap.top().second;
+        minHeap.pop();
+
+        neighbors = ((GraphList *)this->graph)->getNeighbors(uLabel);
+        neighborsWeight = ((GraphList *)this->graph)->getNeighborsWeight(uLabel);
+
+        forward_list< vertexLabelType >::iterator itNeighbors;
+        forward_list< float >::iterator itNeighborsWeight;
+
+        itNeighborsWeight = neighborsWeight->begin();
+
+        for ( itNeighbors = neighbors->begin(); itNeighbors != neighbors->end(); ++itNeighbors ){
+
+        	int v = *itNeighbors;
+		    float weight = *itNeighborsWeight;
+
+		    if (distance[v] > distance[uLabel] + weight){
+
+		            distance[v] = distance[uLabel] + weight;
+		            minHeap.push(make_pair(distance[v], v));
+		            graphTree->insertOrUpdate(uLabel,v);
+		    }
+
+			++itNeighborsWeight;
+		}
+
+    }
+
+        printf("Vertex   Distance from Source\n");
+    for (int i = 0; i < totalVertexes; i++)
+        printf("%d \t\t %d\n", i+1, distance[i]);
 
 
-	return new GraphTree();
+    graphTree->setDistance(distance);
+
+ 	return graphTree;
+
+}
+
+GraphTree* SearchList::prim(vertexLabelType const &node){
+
+	if (node-1 >= this->graph->getTotalVertexes()){
+		cout<<"Error : Node doesn't belong to graph"<<endl;
+		exit(-1);
+	}
+
+	register vertexesTotalLabelType totalVertexes = this->graph->getTotalVertexes();
+
+	GraphTree* graphTree = new GraphTree(totalVertexes);
+
+	graphTree->insertRoot(node-1);
+
+	vector<unsigned int> distance(totalVertexes,numeric_limits< vertexesTotalLabelType >::max());
+
+	priority_queue< iPair, vector <iPair> , greater<iPair> > minHeap;
+
+   	minHeap.push(make_pair(0, node-1));
+
+   	forward_list< vertexesTotalLabelType >* neighbors;
+   	forward_list< float >* neighborsWeight;
+
+    cost[node-1] = 0;
+
+    while (!minHeap.empty()){
+
+        unsigned int uLabel = minHeap.top().second;
+        minHeap.pop();
+
+        neighbors = ((GraphList *)this->graph)->getNeighbors(uLabel);
+        neighborsWeight = ((GraphList *)this->graph)->getNeighborsWeight(uLabel);
+
+        forward_list< vertexLabelType >::iterator itNeighbors;
+        forward_list< float >::iterator itNeighborsWeight;
+
+        itNeighborsWeight = neighborsWeight->begin();
+
+        for ( itNeighbors = neighbors->begin(); itNeighbors != neighbors->end(); ++itNeighbors ){
+
+        	int v = *itNeighbors;
+		    float weight = *itNeighborsWeight;
+
+		    if (cost[v] > weight){
+
+		            cost[v] = weight;
+		            minHeap.push(make_pair(cost[v], v));
+		            graphTree->insertOrUpdate(uLabel,v);
+		    }
+
+			++itNeighborsWeight;
+		}
+
+    }
+
+        printf("Vertex   Cost from Source\n");
+    for (int i = 0; i < totalVertexes; i++)
+        printf("%d \t\t %d\n", i+1, cost[i]);
+
+
+    graphTree->setDistance(cost);
+
+ 	return graphTree;
+
 }

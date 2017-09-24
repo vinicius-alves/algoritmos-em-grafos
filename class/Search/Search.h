@@ -21,7 +21,8 @@ class Search{
 		Search(Graph * graph);
 		virtual GraphTree* breadthFirstSearch(vertexLabelType const &node) = 0;
 		virtual GraphTree* depthFirstSearch(vertexLabelType const &node) = 0;
-		virtual GraphTree* djikstra(vertexLabelType const &node) = 0;
+		virtual GraphTree* dijkstra(vertexLabelType const &node) = 0;
+		virtual GraphTree* prim(vertexLabelType const &node) = 0;
 
 	protected:
 		Graph * graph;

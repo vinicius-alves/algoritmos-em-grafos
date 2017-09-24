@@ -1,7 +1,7 @@
 #include <iostream>
+#include <vector>
 #include "../Graph/Graph.h"
 #include "../lengthData.cpp"
-#include "../libs/tree.hh"
 
 using namespace std;
 
@@ -11,15 +11,18 @@ using namespace std;
 class GraphTree{
 
 	public:
-		GraphTree();
+		GraphTree(vertexesTotalLabelType totalVertexes);
 		~GraphTree();
 		void insertRoot(vertexLabelType const &nodeRoot);
-		void insert(vertexLabelType const &nodeParent,vertexLabelType const &nodeChild);
+		void insertOrUpdate(vertexLabelType const &nodeParent,vertexLabelType const &nodeChild);
 		vertexLabelType getParent(vertexLabelType const &node);
 		int getLevel(vertexLabelType const &node);
+		void setDistance(vector<unsigned int> distance);
+		unsigned int getDistance(unsigned int &node);
 
 	private:
-		tree< vertexLabelType > *graphTree;
+		vector < vertexLabelType > *fathers;
+		vector<unsigned int> distance;
 
 };
 

@@ -7,6 +7,7 @@ void GraphList::initializeStructure(){
 	Graph::initializeStructure();
 	this->vertexes = new vector< vertexLabelType >(this->totalVertexes);
 	this->vertexesLinkedLists = new vector< forward_list< vertexesTotalLabelType > >(this->totalVertexes, forward_list< vertexLabelType >());
+	this->vertexesWeightLinkedLists = new vector< forward_list< float > >(this->totalVertexes, forward_list< float >());
 
 	register vertexesTotalLabelType totalVertexes = this->totalVertexes;
 
@@ -22,6 +23,9 @@ void GraphList::addEdge(vertexLabelType const &vertex, vertexLabelType const &ne
 
 	(*this->vertexesLinkedLists)[vertex].emplace_front(neighbor);
 	(*this->vertexesLinkedLists)[neighbor].emplace_front(vertex);
+
+	(*this->vertexesWeightLinkedLists)[vertex].emplace_front(weight);
+	(*this->vertexesWeightLinkedLists)[neighbor].emplace_front(weight);
 }
 
 
@@ -56,6 +60,12 @@ forward_list< vertexesTotalLabelType >* GraphList::getNeighbors(vertexLabelType 
 
 }
 
+forward_list< float >* GraphList::getNeighborsWeight(vertexLabelType const &node){
+
+	return &(*this->vertexesWeightLinkedLists)[node];
+
+}
+
 GraphList::~GraphList(){
 
 	for (vector< forward_list< vertexLabelType > >::iterator firstIt= (*this->vertexesLinkedLists).begin(); firstIt!= (*this->vertexesLinkedLists).end(); ++firstIt){
@@ -63,6 +73,7 @@ GraphList::~GraphList(){
 		delete &firstIt;	
 	}
 
+	delete this->vertexesWeightLinkedLists;
 	delete this->vertexesLinkedLists;
 	delete this->vertexes;
 }

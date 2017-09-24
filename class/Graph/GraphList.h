@@ -15,11 +15,13 @@ class GraphList: public Graph {
 		virtual void addEdge(vertexLabelType const &vertex, vertexLabelType const &neighbor, float const &weight);
 		virtual void printVerbose();
 		forward_list< vertexesTotalLabelType >* getNeighbors(vertexLabelType const &node);
+		forward_list< float >* getNeighborsWeight(vertexLabelType const &node);
 
 	private:
 		virtual void initializeStructure();
 		vector< vertexLabelType > *vertexes;
 		vector< forward_list< vertexesTotalLabelType > > *vertexesLinkedLists;
+		vector< forward_list< float > > *vertexesWeightLinkedLists;
 };
 
 #endif

@@ -8,16 +8,16 @@
 
 int main(){
 
-	Graph *graph = new GraphMarix();
+	Graph *graph = new GraphList();
 	Reader *reader = new Reader("grafo_1.txt",graph);
 	reader->read();
 	delete reader; 
 
 	//graph->print();
  
-	Search *search = new SearchMatrix(graph);
+	Search *search = new SearchList(graph);
 
-	search->djikstra(1);
+	search->dijkstra(1);
 
 	delete search;
 	delete graph;

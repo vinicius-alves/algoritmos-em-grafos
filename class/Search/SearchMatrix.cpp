@@ -11,9 +11,9 @@ GraphTree* SearchMatrix::breadthFirstSearch(vertexLabelType const &node){
 		exit(-1);
 	}
 
-	GraphTree* graphTree = new GraphTree();
-
 	register vertexesTotalLabelType totalVertexes = this->graph->getTotalVertexes();
+
+	GraphTree* graphTree = new GraphTree(totalVertexes);
 
 	static vector<float> markedVertexes(totalVertexes,0);
 
@@ -44,7 +44,7 @@ GraphTree* SearchMatrix::breadthFirstSearch(vertexLabelType const &node){
 
 				markedVertexes[i] = true;
 				fifo->push(i);
-				graphTree->insert(father,i);			
+				graphTree->insertOrUpdate(father,i);			
 			}
 		}
 
@@ -63,9 +63,9 @@ GraphTree* SearchMatrix::depthFirstSearch(vertexLabelType const &node){
 		exit(-1);
 	}
 
-	GraphTree* graphTree = new GraphTree();
-
 	register vertexesTotalLabelType totalVertexes = this->graph->getTotalVertexes();
+
+	GraphTree* graphTree = new GraphTree(totalVertexes);
 
 	static vector<float> markedVertexes(totalVertexes,0);
 
@@ -93,11 +93,11 @@ GraphTree* SearchMatrix::depthFirstSearch(vertexLabelType const &node){
 
  		//cout<<"\n lifo-> father = "<< father<<endl;
 
- 		if(markedVertexes[father]<=0){
+ 		if(!markedVertexes[father]){
 
  			//cout<<"father entrou no if, father = " <<father <<"\n"<<endl;
 
- 			markedVertexes[father] = 1;
+ 			markedVertexes[father] = true;
 
  			neighbors = ((GraphMatrix *)this->graph)->getNeighbors(father);
 
@@ -117,7 +117,7 @@ GraphTree* SearchMatrix::depthFirstSearch(vertexLabelType const &node){
 
 			//if(lifoWasPushed){
 				//cout << "father = " << father << " son = " << lifo->top()<<endl;
-				//graphTree->insert((*vertexFather)[lifo->top()],lifo->top());
+				//graphTree->insertOrUpdate((*vertexFather)[lifo->top()],lifo->top());
 			//}
 
 			//lifoWasPushed = false;
@@ -134,29 +134,29 @@ GraphTree* SearchMatrix::depthFirstSearch(vertexLabelType const &node){
 
 }
 
-GraphTree* SearchMatrix::djikstra(vertexLabelType const &node){
+GraphTree* SearchMatrix::dijkstra(vertexLabelType const &node){
 
-	if (node >= this->graph->getTotalVertexes()){
+	if (node-1 >= this->graph->getTotalVertexes()){
 		cout<<"Error : Node doesn't belong to graph"<<endl;
 		exit(-1);
 	}
 
-	GraphTree* graphTree = new GraphTree();
-
 	register vertexesTotalLabelType totalVertexes = this->graph->getTotalVertexes();
+
+	GraphTree* graphTree = new GraphTree(totalVertexes);
+
+	graphTree->insertRoot(node-1);
 
 	vector<unsigned int> distance(totalVertexes,numeric_limits< vertexesTotalLabelType >::max());
 
 	priority_queue< iPair, vector <iPair> , greater<iPair> > minHeap;
 
-   	minHeap.push(make_pair(0, node));
+   	minHeap.push(make_pair(0, node-1));
 
    	vector<float>* neighbors;
 
-    distance[node] = 0;
- 
-    /* Looping till priority queue becomes empty (or all
-      distances are not finalized) */
+    distance[node-1] = 0;
+
     while (!minHeap.empty()){
 
         unsigned int uLabel = minHeap.top().second;
@@ -164,48 +164,86 @@ GraphTree* SearchMatrix::djikstra(vertexLabelType const &node){
 
         neighbors = ((GraphMatrix *)this->graph)->getNeighbors(uLabel);
  
-        // 'i' is used to get all adjacent vertices of a vertex
         unsigned int i;
         for (i = 0; i < (*neighbors).size(); i++){
 
         	if((*neighbors)[i] >0){
-		        // Get vertex label and weight of current adjacent
-		        // of u.
+
 		        int v = i;
 		        float weight = (*neighbors)[i];
 
-		        //  If there is shorted path to v through u.
 		        if (distance[v] > distance[uLabel] + weight){
-		            // Updating distance of v
+
 		            distance[v] = distance[uLabel] + weight;
 		            minHeap.push(make_pair(distance[v], v));
+		            graphTree->insertOrUpdate(uLabel,v);
 		        }
             }
         }
     }
 
-        // Print shortest distances stored in dist[]
-    printf("Vertex   Distance from Source\n");
-    for (int i = 0; i < totalVertexes; i++)
-        printf("%d \t\t %d\n", i, distance[i]);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    graphTree->setDistance(distance);
 
  	return graphTree;
 
 }
+
+GraphTree* SearchMatrix::prim(vertexLabelType const &node){
+
+	if (node-1 >= this->graph->getTotalVertexes()){
+		cout<<"Error : Node doesn't belong to graph"<<endl;
+		exit(-1);
+	}
+
+	register vertexesTotalLabelType totalVertexes = this->graph->getTotalVertexes();
+
+	GraphTree* graphTree = new GraphTree(totalVertexes);
+
+	graphTree->insertRoot(node-1);
+
+	vector<unsigned int> cost(totalVertexes,numeric_limits< vertexesTotalLabelType >::max());
+
+	priority_queue< iPair, vector <iPair> , greater<iPair> > minHeap;
+
+   	minHeap.push(make_pair(0, node-1));
+
+   	vector<float>* neighbors;
+
+    cost[node-1] = 0;
+
+    while (!minHeap.empty()){
+
+        unsigned int uLabel = minHeap.top().second;
+        minHeap.pop();
+
+        neighbors = ((GraphMatrix *)this->graph)->getNeighbors(uLabel);
+ 
+        unsigned int i;
+        for (i = 0; i < (*neighbors).size(); i++){
+
+        	if((*neighbors)[i] >0){
+
+		        int v = i;
+		        float weight = (*neighbors)[i];
+
+		        if (cost[v] > weight){
+
+		            cost[v] =  weight;
+		            minHeap.push(make_pair(cost[v], v));
+		            graphTree->insertOrUpdate(uLabel,v);
+		        }
+            }
+        }
+    }
+
+    printf("Vertex   Distance from Source\n");
+    for (int i = 0; i < totalVertexes; i++)
+        printf("%d \t\t %d\n", i+1, cost[i]);
+
+    graphTree->setDistance(cost);
+
+ 	return graphTree;
+
+}
+
+
