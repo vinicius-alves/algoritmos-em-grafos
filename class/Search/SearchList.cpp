@@ -132,3 +132,9 @@ GraphTree* SearchList::depthFirstSearch(vertexLabelType const &node){
  	return graphTree;
 
 }
+
+GraphTree* SearchList::djikstra(vertexLabelType const &node){
+
+
+	return new GraphTree();
+}

@@ -14,7 +14,7 @@ using namespace std;
 class Graph {
 
 	public:
-		virtual void addEdge(vertexLabelType const &vertex, vertexLabelType const &neighbor);
+		virtual void addEdge(vertexLabelType const &vertex, vertexLabelType const &neighbor, float const &weight);
 		virtual void print();
 		virtual void printVerbose() = 0;
 		void calcRelativeFrequencyValences();

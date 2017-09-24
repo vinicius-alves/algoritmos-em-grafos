@@ -11,13 +11,13 @@ class GraphMatrix: public Graph {
 
 	public:
 		~GraphMatrix();
-		virtual void addEdge(vertexLabelType const &vertex, vertexLabelType const &neighbor);
+		virtual void addEdge(vertexLabelType const &vertex, vertexLabelType const &neighbor, float const &weight);
 		virtual void printVerbose();
-		vector<bool>* getNeighbors(vertexLabelType const &node);
+		vector<float>* getNeighbors(vertexLabelType const &node);
 
 	private:
 		virtual void initializeStructure();
-		vector< vector<bool> > *matrix;
+		vector< vector<float> > *matrix;
 
 };
 

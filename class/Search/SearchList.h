@@ -14,6 +14,7 @@ class SearchList : public Search{
 		SearchList(Graph * graph);
 		virtual GraphTree* breadthFirstSearch(vertexLabelType const &node);
 		virtual GraphTree* depthFirstSearch(vertexLabelType const &node);
+		virtual GraphTree* djikstra(vertexLabelType const &node);
 
 };
 

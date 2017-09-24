@@ -8,22 +8,17 @@
 
 int main(){
 
-	Graph *graph = new GraphList();
-	Reader *reader = new Reader("as_graph.txt",graph);
+	Graph *graph = new GraphMarix();
+	Reader *reader = new Reader("grafo_1.txt",graph);
 	reader->read();
 	delete reader; 
 
-	graph->print();
+	//graph->print();
  
-	Search *search = new SearchList(graph);
+	Search *search = new SearchMatrix(graph);
 
-	GraphTree *graphTree = search->breadthFirstSearch(1);
+	search->djikstra(1);
 
-	cout<<"Level of 1 is "<< graphTree->getLevel(1)<<endl;
-	cout<<"Level of 3 is "<< graphTree->getLevel(3)<<endl;
-	cout<<"Father of 3 is "<< graphTree->getParent(3)<<endl;
-
-	delete graphTree;
 	delete search;
 	delete graph;
 	

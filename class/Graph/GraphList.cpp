@@ -16,9 +16,9 @@ void GraphList::initializeStructure(){
 	}
 }
 
-void GraphList::addEdge(vertexLabelType const &vertex, vertexLabelType const &neighbor){
+void GraphList::addEdge(vertexLabelType const &vertex, vertexLabelType const &neighbor, float const &weight){
 
-	Graph::addEdge(vertex,neighbor);
+	Graph::addEdge(vertex,neighbor,weight);
 
 	(*this->vertexesLinkedLists)[vertex].emplace_front(neighbor);
 	(*this->vertexesLinkedLists)[neighbor].emplace_front(vertex);

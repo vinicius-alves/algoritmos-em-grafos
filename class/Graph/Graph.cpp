@@ -21,7 +21,7 @@ void Graph::initializeStructure(){
 	this->frequencyOfValences = new vector< edgesTotalLabelType >(this->totalVertexes-1,0);
 }
 
-void Graph::addEdge(vertexLabelType const &vertex, vertexLabelType const &neighbor){
+void Graph::addEdge(vertexLabelType const &vertex, vertexLabelType const &neighbor, float const &weight){
 
 	(*valences)[vertex] += 1;
 	(*valences)[neighbor] += 1;

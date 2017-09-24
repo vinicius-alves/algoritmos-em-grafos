@@ -12,7 +12,7 @@ class GraphList: public Graph {
 
 	public:
 		~GraphList();
-		virtual void addEdge(vertexLabelType const &vertex, vertexLabelType const &neighbor);
+		virtual void addEdge(vertexLabelType const &vertex, vertexLabelType const &neighbor, float const &weight);
 		virtual void printVerbose();
 		forward_list< vertexesTotalLabelType >* getNeighbors(vertexLabelType const &node);
 

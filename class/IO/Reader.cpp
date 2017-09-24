@@ -7,36 +7,33 @@ Reader::Reader(const char * path, Graph * graph):path(path),graph(graph){};
 
 void Reader::read(){
 
-ifstream file;
-file.open(this->path);
+	ifstream file;
+	file.open(this->path);
 
-if (file.is_open()){
+	if (file.is_open()){
 
-	vertexesTotalLabelType totalVertexes;
-	edgesTotalLabelType totalEdges =0;
+		vertexesTotalLabelType totalVertexes;
+		edgesTotalLabelType totalEdges =0;
 
-	file >> totalVertexes;
+		file >> totalVertexes;
 
-    this->graph->setTotalVertexes(totalVertexes);
+	    this->graph->setTotalVertexes(totalVertexes);
 
 
-	vertexLabelType vertex, neighbor;
-	while (file >> vertex >> neighbor)
-	{
+		vertexLabelType vertex, neighbor;
+		unsigned int weight;
+		while (file >> vertex >> neighbor >> weight)
+		{
+			this->graph->addEdge(vertex-1, neighbor-1, weight);
+			totalEdges++;
+		}
 
-		this->graph->addEdge(vertex-1, neighbor-1);
-		totalEdges++;
+		this->graph->setTotalEdges(totalEdges);
+
+		file.close();
+
+	} else{
+		throw invalid_argument( "File not found!" );
 	}
 
-	this->graph->setTotalEdges(totalEdges);
-
-	file.close();
-
-} else{
-	throw invalid_argument( "File not found!" );
 }
-
-
-
-
-};

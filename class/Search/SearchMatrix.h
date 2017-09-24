@@ -13,6 +13,7 @@ class SearchMatrix : public Search{
 		SearchMatrix(Graph * graph);
 		virtual GraphTree* breadthFirstSearch(vertexLabelType const &node);
 		virtual GraphTree* depthFirstSearch(vertexLabelType const &node);
+		virtual GraphTree* djikstra(vertexLabelType const &node);
 
 };
 
