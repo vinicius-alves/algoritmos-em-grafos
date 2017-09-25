@@ -34,17 +34,17 @@ void Search::calcAverageDistance(){
 			if((*distances[i])[j]<infinityDouble)
 				sum+= (*distances[i])[j];
 		}
-		cout<<endl;
 	}
 
 	#pragma omp for nowait
 	for (i =0; i<totalVertexes; i++){
-
 			(*distances[i]).clear();
 	}
+	
+	sum = sum/(totalVertexes*(totalVertexes-1))
 }
 
-	cout << "Distância média = "<<sum/(totalVertexes*(totalVertexes-1))<<endl;
+	cout << "Distância média = "<<sum<<endl;
 
 	distances.clear();
 	delete graph;
