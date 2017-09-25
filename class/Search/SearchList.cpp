@@ -146,7 +146,7 @@ GraphTree* SearchList::dijkstra(vertexLabelType const &node){
 
 	graphTree->insertRoot(node);
 
-	vector<double> distance(totalVertexes,numeric_limits< vertexesTotalLabelType >::max());
+	vector<double> distance(totalVertexes,numeric_limits< vertexesTotalLabelType >::infinity());
 
 	priority_queue< iPair, vector <iPair> , greater<iPair> > minHeap;
 
@@ -187,11 +187,6 @@ GraphTree* SearchList::dijkstra(vertexLabelType const &node){
 
     }
 
-        printf("Vertex   Distance from Source\n");
-    for (int i = 0; i < totalVertexes; i++)
-        printf("%d \t\t %f\n", i+1, distance[i]);
-
-
     graphTree->setDistance(distance);
 
  	return graphTree;
@@ -211,7 +206,7 @@ GraphTree* SearchList::prim(vertexLabelType const &node){
 
 	graphTree->insertRoot(node);
 
-	vector<double> cost(totalVertexes,numeric_limits< vertexesTotalLabelType >::max());
+	vector<double> cost(totalVertexes,numeric_limits< vertexesTotalLabelType >::infinity());
 
 	priority_queue< iPair, vector <iPair> , greater<iPair> > minHeap;
 
@@ -251,11 +246,6 @@ GraphTree* SearchList::prim(vertexLabelType const &node){
 		}
 
     }
-
-        printf("Vertex   Cost from Source\n");
-    for (int i = 0; i < totalVertexes; i++)
-        printf("%d \t\t %f\n", i+1, cost[i]);
-
 
     graphTree->setDistance(cost);
 
