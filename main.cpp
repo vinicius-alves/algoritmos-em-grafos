@@ -8,16 +8,16 @@
 
 int main(){
 
-	Graph *graph = new GraphList();
+	Graph *graph = new GraphMatrix();
 	Reader *reader = new Reader("grafo_1.txt",graph);
 	reader->read();
 	delete reader; 
 
 	//graph->print();
  
-	Search *search = new SearchList(graph);
+	Search *search = new SearchMatrix(graph);
 
-	search->dijkstra(1);
+	search->calcAverageDistance();
 
 	delete search;
 	delete graph;

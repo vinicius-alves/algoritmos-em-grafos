@@ -17,12 +17,12 @@ class GraphTree{
 		void insertOrUpdate(vertexLabelType const &nodeParent,vertexLabelType const &nodeChild);
 		vertexLabelType getParent(vertexLabelType const &node);
 		int getLevel(vertexLabelType const &node);
-		void setDistance(vector<unsigned int> distance);
-		unsigned int getDistance(unsigned int &node);
+		void setDistance(vector<double> &distance);
+		vector<double>* getDistance();
 
 	private:
 		vector < vertexLabelType > *fathers;
-		vector<unsigned int> distance;
+		vector<double> distance;
 
 };
 

@@ -135,7 +135,7 @@ GraphTree* SearchList::depthFirstSearch(vertexLabelType const &node){
 
 GraphTree* SearchList::dijkstra(vertexLabelType const &node){
 
-	if (node-1 >= this->graph->getTotalVertexes()){
+	if (node >= this->graph->getTotalVertexes()){
 		cout<<"Error : Node doesn't belong to graph"<<endl;
 		exit(-1);
 	}
@@ -144,18 +144,18 @@ GraphTree* SearchList::dijkstra(vertexLabelType const &node){
 
 	GraphTree* graphTree = new GraphTree(totalVertexes);
 
-	graphTree->insertRoot(node-1);
+	graphTree->insertRoot(node);
 
-	vector<unsigned int> distance(totalVertexes,numeric_limits< vertexesTotalLabelType >::max());
+	vector<double> distance(totalVertexes,numeric_limits< vertexesTotalLabelType >::max());
 
 	priority_queue< iPair, vector <iPair> , greater<iPair> > minHeap;
 
-   	minHeap.push(make_pair(0, node-1));
+   	minHeap.push(make_pair(0, node));
 
    	forward_list< vertexesTotalLabelType >* neighbors;
    	forward_list< float >* neighborsWeight;
 
-    distance[node-1] = 0;
+    distance[node] = 0;
 
     while (!minHeap.empty()){
 
@@ -189,7 +189,7 @@ GraphTree* SearchList::dijkstra(vertexLabelType const &node){
 
         printf("Vertex   Distance from Source\n");
     for (int i = 0; i < totalVertexes; i++)
-        printf("%d \t\t %d\n", i+1, distance[i]);
+        printf("%d \t\t %f\n", i+1, distance[i]);
 
 
     graphTree->setDistance(distance);
@@ -200,7 +200,7 @@ GraphTree* SearchList::dijkstra(vertexLabelType const &node){
 
 GraphTree* SearchList::prim(vertexLabelType const &node){
 
-	if (node-1 >= this->graph->getTotalVertexes()){
+	if (node >= this->graph->getTotalVertexes()){
 		cout<<"Error : Node doesn't belong to graph"<<endl;
 		exit(-1);
 	}
@@ -209,18 +209,18 @@ GraphTree* SearchList::prim(vertexLabelType const &node){
 
 	GraphTree* graphTree = new GraphTree(totalVertexes);
 
-	graphTree->insertRoot(node-1);
+	graphTree->insertRoot(node);
 
-	vector<unsigned int> distance(totalVertexes,numeric_limits< vertexesTotalLabelType >::max());
+	vector<double> cost(totalVertexes,numeric_limits< vertexesTotalLabelType >::max());
 
 	priority_queue< iPair, vector <iPair> , greater<iPair> > minHeap;
 
-   	minHeap.push(make_pair(0, node-1));
+   	minHeap.push(make_pair(0, node));
 
    	forward_list< vertexesTotalLabelType >* neighbors;
    	forward_list< float >* neighborsWeight;
 
-    cost[node-1] = 0;
+    cost[node] = 0;
 
     while (!minHeap.empty()){
 
@@ -254,7 +254,7 @@ GraphTree* SearchList::prim(vertexLabelType const &node){
 
         printf("Vertex   Cost from Source\n");
     for (int i = 0; i < totalVertexes; i++)
-        printf("%d \t\t %d\n", i+1, cost[i]);
+        printf("%d \t\t %f\n", i+1, cost[i]);
 
 
     graphTree->setDistance(cost);

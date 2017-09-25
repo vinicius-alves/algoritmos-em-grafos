@@ -48,13 +48,13 @@ int GraphTree::getLevel(vertexLabelType const &node){
 	return 0;
 }
 
-void GraphTree::setDistance(vector<unsigned int> distance){
+void GraphTree::setDistance(vector<double> &distance){
 
 	this->distance = distance;
 }
 
 
-unsigned int GraphTree::getDistance(unsigned int &node){
+vector<double>* GraphTree::getDistance(){
 
-	return this->distance[node];
+	return &this->distance;
 }

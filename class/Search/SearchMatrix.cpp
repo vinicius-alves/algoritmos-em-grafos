@@ -17,15 +17,15 @@ GraphTree* SearchMatrix::breadthFirstSearch(vertexLabelType const &node){
 
 	static vector<float> markedVertexes(totalVertexes,0);
 
-	markedVertexes[node-1] = true;
+	markedVertexes[node] = true;
 
 	queue< vertexLabelType > *fifo = new queue< vertexLabelType >(); 
 
 	vector<float>* neighbors;
 
-	fifo->push(node-1);
+	fifo->push(node);
 
-	graphTree->insertRoot(node-1);
+	graphTree->insertRoot(node);
 
 	vertexLabelType father;
 
@@ -77,9 +77,9 @@ GraphTree* SearchMatrix::depthFirstSearch(vertexLabelType const &node){
 
 	//bool lifoWasPushed = false;
 
-	lifo->push(node-1);
+	lifo->push(node);
 
-	graphTree->insertRoot(node-1);
+	graphTree->insertRoot(node);
 
 	vertexLabelType father;
 
@@ -136,7 +136,7 @@ GraphTree* SearchMatrix::depthFirstSearch(vertexLabelType const &node){
 
 GraphTree* SearchMatrix::dijkstra(vertexLabelType const &node){
 
-	if (node-1 >= this->graph->getTotalVertexes()){
+	if (node >= this->graph->getTotalVertexes()){
 		cout<<"Error : Node doesn't belong to graph"<<endl;
 		exit(-1);
 	}
@@ -145,17 +145,17 @@ GraphTree* SearchMatrix::dijkstra(vertexLabelType const &node){
 
 	GraphTree* graphTree = new GraphTree(totalVertexes);
 
-	graphTree->insertRoot(node-1);
+	graphTree->insertRoot(node);
 
-	vector<unsigned int> distance(totalVertexes,numeric_limits< vertexesTotalLabelType >::max());
+	vector<double> distance(totalVertexes,numeric_limits< vertexesTotalLabelType >::infinity());
 
 	priority_queue< iPair, vector <iPair> , greater<iPair> > minHeap;
 
-   	minHeap.push(make_pair(0, node-1));
+   	minHeap.push(make_pair(0, node));
 
    	vector<float>* neighbors;
 
-    distance[node-1] = 0;
+    distance[node] = 0;
 
     while (!minHeap.empty()){
 
@@ -190,7 +190,7 @@ GraphTree* SearchMatrix::dijkstra(vertexLabelType const &node){
 
 GraphTree* SearchMatrix::prim(vertexLabelType const &node){
 
-	if (node-1 >= this->graph->getTotalVertexes()){
+	if (node >= this->graph->getTotalVertexes()){
 		cout<<"Error : Node doesn't belong to graph"<<endl;
 		exit(-1);
 	}
@@ -199,17 +199,17 @@ GraphTree* SearchMatrix::prim(vertexLabelType const &node){
 
 	GraphTree* graphTree = new GraphTree(totalVertexes);
 
-	graphTree->insertRoot(node-1);
+	graphTree->insertRoot(node);
 
-	vector<unsigned int> cost(totalVertexes,numeric_limits< vertexesTotalLabelType >::max());
+	vector<double> cost(totalVertexes,numeric_limits< vertexesTotalLabelType >::infinity());
 
 	priority_queue< iPair, vector <iPair> , greater<iPair> > minHeap;
 
-   	minHeap.push(make_pair(0, node-1));
+   	minHeap.push(make_pair(0, node));
 
    	vector<float>* neighbors;
 
-    cost[node-1] = 0;
+    cost[node] = 0;
 
     while (!minHeap.empty()){
 
@@ -238,7 +238,7 @@ GraphTree* SearchMatrix::prim(vertexLabelType const &node){
 
     printf("Vertex   Distance from Source\n");
     for (int i = 0; i < totalVertexes; i++)
-        printf("%d \t\t %d\n", i+1, cost[i]);
+        printf("%d \t\t %f\n", i+1, cost[i]);
 
     graphTree->setDistance(cost);
 
