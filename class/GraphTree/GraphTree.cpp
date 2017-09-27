@@ -10,6 +10,7 @@ GraphTree::GraphTree(vertexesTotalLabelType totalVertexes){
 GraphTree::~GraphTree(){
 
 	delete this->fathers;
+	this->distance.clear();
 }
 
 void GraphTree::insertRoot(vertexLabelType const &nodeRoot){
