@@ -23,7 +23,7 @@ class Search{
 		virtual GraphTree* depthFirstSearch(vertexLabelType const &node) = 0;
 		virtual GraphTree* dijkstra(vertexLabelType const &node) = 0;
 		virtual GraphTree* prim(vertexLabelType const &node) = 0;
-		void calcAverageDistance();
+		double calcAverageDistance();
 
 	protected:
 		Graph * graph;

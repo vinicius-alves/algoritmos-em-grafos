@@ -4,7 +4,7 @@ using namespace std;
 
 Search::Search(Graph * graph):graph(graph){};
 
-void Search::calcAverageDistance(){
+double Search::calcAverageDistance(){
 
 	register const vertexesTotalLabelType totalVertexes = this->graph->getTotalVertexes();
 
@@ -25,7 +25,7 @@ void Search::calcAverageDistance(){
 
 		graph = this->dijkstra(i);
 		distance = graph->getDistance();
-		
+
 		it = distance->begin();
 		advance(it,i+1);
 
@@ -42,6 +42,6 @@ void Search::calcAverageDistance(){
 	sum = sum*vertexCombination;
 }
 
-	cout << "Distância média = "<<sum<<endl;
+	return sum;
 
 }

@@ -146,7 +146,7 @@ GraphTree* SearchList::dijkstra(vertexLabelType const &node){
 
 	graphTree->insertRoot(node);
 
-	vector<double> distance(totalVertexes,numeric_limits< vertexesTotalLabelType >::infinity());
+	vector<double> distance(totalVertexes,numeric_limits< double >::infinity());
 
 	priority_queue< iPair, vector <iPair> , greater<iPair> > minHeap;
 
@@ -206,7 +206,7 @@ GraphTree* SearchList::prim(vertexLabelType const &node){
 
 	graphTree->insertRoot(node);
 
-	vector<double> cost(totalVertexes,numeric_limits< vertexesTotalLabelType >::infinity());
+	vector<double> cost(totalVertexes,numeric_limits< double >::infinity());
 
 	priority_queue< iPair, vector <iPair> , greater<iPair> > minHeap;
 
