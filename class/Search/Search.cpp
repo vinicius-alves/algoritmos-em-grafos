@@ -20,7 +20,7 @@ double Search::calcAverageDistance(){
 
 #pragma omp parallel private(i,j,distance,graph,it) reduction(+:sum)
 {
-	#pragma omp for nowait schedule(dynamic)
+	#pragma omp for nowait
 	for(i =0; i<totalVertexes-1; i++){
 
 		graph = this->dijkstra(i);
