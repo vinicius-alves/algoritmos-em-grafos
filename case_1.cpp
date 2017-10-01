@@ -7,6 +7,8 @@
 #include "class/Search/SearchList.h"
 #include "class/GraphTree/GraphTree.h"
 
+// to run: g++ -lm case_1.cpp class/*/*.cpp class/*.cpp -o exec -std=c++11 -fopenmp -O3
+
 int main(){
 
 	Graph *graph = new GraphList();
