@@ -12,7 +12,7 @@
 int main(){
 
 	Graph *graph = new GraphList();
-	Reader *reader = new Reader("grafo_5.txt",graph);
+	Reader *reader = new Reader("grafo_4.txt",graph);
 	reader->read();
 	delete reader; 
 	double result;

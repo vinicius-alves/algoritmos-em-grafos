@@ -19,6 +19,7 @@ class GraphTree{
 		int getLevel(vertexLabelType const &node);
 		void setDistance(vector<double> &distance);
 		vector<double>* getDistance();
+		vector<unsigned int>* getParents();
 
 	private:
 		vector < vertexLabelType > *fathers;

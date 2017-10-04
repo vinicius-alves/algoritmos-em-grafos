@@ -21,7 +21,7 @@ void Reader::read(){
 
 
 		vertexLabelType vertex, neighbor;
-		unsigned int weight;
+		float weight;
 		while (file >> vertex >> neighbor >> weight)
 		{
 			this->graph->addEdge(vertex-1, neighbor-1, weight);

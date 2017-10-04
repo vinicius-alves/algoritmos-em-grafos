@@ -171,7 +171,6 @@ GraphTree* SearchList::dijkstra(vertexLabelType const &node){
         itNeighborsWeight = neighborsWeight->begin();
 
         for ( itNeighbors = neighbors->begin(); itNeighbors != neighbors->end(); ++itNeighbors ){
-
         	int v = *itNeighbors;
 		    float weight = *itNeighborsWeight;
 

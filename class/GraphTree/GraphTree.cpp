@@ -59,3 +59,8 @@ vector<double>* GraphTree::getDistance(){
 
 	return &this->distance;
 }
+
+vector<unsigned int>* GraphTree::getParents(){
+
+	return this->fathers;
+}

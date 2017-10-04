@@ -31,6 +31,7 @@ int main(){
 
 	parent = target-1;
 
+	cout<< "Path from Dijkstra until Daniel:"<<endl;
 	while( parent != root-1){
 
 		cout<< parent+1 <<" -> ";
@@ -39,6 +40,16 @@ int main(){
 	} 
 
 	cout<<" "<< root <<endl;
+
+	distance = graphTree->getDistance();
+
+	cout << "\nDistance between Dijkstra and: \n"<<endl;
+	cout << "Turing"    << " is " << (*distance)[11365-1]  << endl;
+	cout << "Kruskal"   << " is " << (*distance)[509510-1] << endl;
+	cout << "Kleinberg" << " is " << (*distance)[5709-1]   << endl;
+	cout << "Tardos"    << " is " << (*distance)[11386-1]  << endl;
+	cout << "Daniel"    << " is " << (*distance)[2722-1]   << endl;
+	cout<<endl;
 
 	clock_t endList = clock();
 
